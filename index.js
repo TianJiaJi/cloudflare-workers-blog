@@ -13,7 +13,7 @@ const OPT = {
     "recentlySize" : 6,//最近文章数
     "readMoreLength":150,//阅读更多截取长度	
     "cacheTime" : 60*60*24*0.5, //网页缓存时长(秒),建议=文章更新频率
-    "themeURL" : "https://raw.githubusercontent.com/gdtool/cloudflare-workers-blog/master/themes/default2.0/", // 模板地址,以 "/"" 结尾
+    "themeURL" : "https://www.githubip.xyz/gdtool/cloudflare-workers-blog/master/themes/default2.0/", // 模板地址,以 "/"" 结尾
     "html404" : `<b>404</b>`,//404页面代码
     "codeBeforHead":``,//其他代码,显示在</head>前
     "codeBeforBody":``,//其他代码,显示在</body>前
@@ -24,7 +24,8 @@ const OPT = {
     "otherCodeC":``,//其他参数A
     "otherCodeD":``,//其他参数A
     "otherCodeE":``,//其他参数A
-    "copyRight" :`Powered by <a href="https://www.cloudflare.com">CF Workers</a> & <a href="https://blog.gezhong.vip">CF-Blog </a>`,//自定义版权信息,建议保留大公无私的 Coudflare 和 作者 的链接
+    <!-- "copyRight" :`Powered by <a href="https://www.cloudflare.com">CF Workers</a> & <a href="https://blog.gezhong.vip">CF-Blog </a>`,//自定义版权信息,建议保留大公无私的 Coudflare 和 作者 的链接 -->
+    "copyRight": `感谢<a href="https://github.com/EvanNotFound/vercel-hexo-template"><b>@EvanNotFound </b></a>的代码贡献,作者的: <a href="https://blog.gezhong.vip"><b>博客</b><a/><br>本网站是基于 <a href="https://www.cloudflare.com"> <b>cloudflare workers</b></a>搭建`, //自定义版权信息,建议保留大公无私的 Coudflare 和 作者 的链接
 "robots":`User-agent: *
 Disallow: /admin`//robots.txt设置
 };
@@ -267,9 +268,9 @@ Disallow: /admin`//robots.txt设置
 			console.log(r.pathname);
 			let O = r.searchParams.get("theme"),
 				E = r.searchParams.get("pageSize");
-			O && (OPT.themeURL = "https://raw.githubusercontent.com/gdtool/cloudflare-workers-blog/master/themes/" + O + "/");
+			O && (OPT.themeURL = "https://www.githubip.xyz/gdtool/cloudflare-workers-blog/master/themes/" + O + "/");
 			E && (OPT.pageSize = parseInt(E));
-			"https://raw.githubusercontent.com/gdtool/cloudflare-workers-blog/master/themes/default/" == OPT.themeURL && (OPT.themeURL = "https://raw.githubusercontent.com/gdtool/cloudflare-workers-blog/master/themes/default2.0/");
+			"https://www.githubip.xyz/gdtool/cloudflare-workers-blog/master/themes/default/" == OPT.themeURL && (OPT.themeURL = "https://www.githubip.xyz/gdtool/cloudflare-workers-blog/master/themes/default2.0/");
 			if (console.log("theme pageSize", OPT.pageSize, OPT.themeURL), "/robots.txt" == r.pathname) return new Response(OPT.robots + "\nSitemap: https://" + OPT.siteDomain + "/sitemap.xml", {
 				headers: {
 					"content-type": "text/plain;charset=UTF-8"
